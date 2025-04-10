@@ -55,19 +55,35 @@
 
 ## 📸 Screenshots
 
-| Inventory Dashboard | Staff Management | Reorder Report |
-|---------------------|------------------|----------------|
-| ![Analytics](src/assets/screenshot/assets/screenshot/dashboard1.png) | ![Users](./screenshots/Screenshot%202025-04-10%20143915.png) | ![Reorder](./screenshots/Screenshot%202025-04-10%20143844.png) |
+## 📈 Dashboard
+ ![Analytics](src/assets/screenshot/dashboard1.png) 
+ 
+ ![Analytics](src/assets/screenshot/dashboard2.png)
+
+ ## 👤 Users
+ 
+ ![Users](src/assets/screenshot/users.png)  
+ ![Users](src/assets/screenshot/pendengstaff.png)  
+ 
+
+ ## 🏢 Create 
+  ![Users](src/assets/screenshot/CreateManager.png)  
+  ![Users](src/assets/screenshot/Createproduct.png)  
+  
+ ## 🗺️ Inventory Location Map
+ ![map](src/assets/screenshot/map.png)  
 
 More Screens:
 - [x] Update Profile  
-  ![Profile](./screenshots/Screenshot%202025-04-10%20144932.png)
-- [x] Inventory Location Map  
-  ![Map](./screenshots/Screenshot%202025-04-10%20144418.png)
-- [x] Entity-Relationship Diagram (ERD)  
-  ![ERD](./screenshots/Screenshot%202025-04-10%20144932.png)
+  ![Profile](src/assets/screenshot/update.png)
+- [x] Reordering  
+  ![Reordering](src/assets/screenshot/Reorderinginfo.png)
+  ![Reordering](src/assets/screenshot/documentexport.png)
 
-> 📂 Include a `/screenshots/` folder in the repo with your screenshots for them to display.
+- [x] Class diagram 
+  ![classd](src/assets/screenshot/classd.png)
+
+> 📂 You can see the rest of the pages in  `src/assets/screenshot/` 
 
 ---
 
@@ -83,10 +99,19 @@ More Screens:
 - Charts and stats visualization  
 ✅ Created exportable PDF reports  
 ✅ Designed responsive UI and styled using SCSS/Bootstrap  
-✅ Built database structure in Oracle (see ERD)
+✅ Built database structure in Oracle (see class diagram)
 
 ---
+## 🔐 Authentication & Authorization
 
+- Login system with **Role-Based Access Control (RBAC)**.
+- User roles include:
+  - `Admin` – Full access.
+  - `Manager` - it will be in mobile app
+  - `Staff`- it will be in mobile app
+- Token-based session handling ( integration with backend JWT API).
+
+---
 ## 🚀 How to Run Locally
 
 ```bash
