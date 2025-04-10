@@ -1,5 +1,5 @@
 # 📦 Stockify - Inventory Management System (Angular)
-
+### Admin Dshboard
 **Stockify** is a smart and simple Inventory Management Dashboard developed using **Angular**. It helps businesses monitor, manage, and reorder stock across multiple locations with confidence. This project includes comprehensive stock analytics, user management, and geographic inventory mapping.
 
 ---
