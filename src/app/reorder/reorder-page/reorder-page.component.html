@@ -1,0 +1,60 @@
+<app-navbar ></app-navbar>
+<app-sidebar ></app-sidebar>
+
+               <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-end mb-3">
+                        <button class="btn btn-primary" (click)="exportToPDF()">Export as PDF</button>
+                    </div>
+                    <!-- Centered Form Container -->
+                    <div class="container d-flex justify-content-start mr-3 mt-4">
+                        <div class="card w-100">
+                            <div class="d-flex justify-content-start align-items-center gap-2 mb-3">
+                                <input type="text" 
+                                       class="form-control w-25 rounded-pill px-3" 
+                                       placeholder="Search by Name..." 
+                                       [(ngModel)]="searchText">
+                                <button class="btn btn-primary rounded-pill px-4" (click)="performSearch()">Search</button>
+                            </div>
+                            <div class="card-body">
+                                
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Reorder ID</th>
+                                            <th>Product Name</th>
+                                            <th>Supplier Name</th>
+                                            <th>Threshold Quantity</th>
+                                            <th>Operator</th>
+                                            <th>Quantity</th>
+                                            <th>Created At</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of filteredReorderItems">
+                                            <td>{{ item.reorderId }}</td>
+                                            <td>{{ item.productName }}</td>
+                                            <td>{{ item.supplierName }}</td>
+                                            <td>{{ item.thresholdQuantity }}</td>
+                                            <td>{{ item.operator }}</td>
+                                            <td>{{ item.reorderQuantity }}</td>
+                                            <td>{{ item.reorderCreatedAt | date: 'yyyy-MM-dd HH:mm' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <app-footer ></app-footer>
+<style>
+.min-vh-80 {
+    min-height: calc(100vh - 200px);
+}
+.card {
+    border-radius: 0.8rem;
+    border: none;
+}
+</style>
+

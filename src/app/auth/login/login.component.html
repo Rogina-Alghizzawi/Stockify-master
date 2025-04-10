@@ -1,0 +1,70 @@
+<!-- Header -->
+
+  <!-- Banner -->
+  <div class="banner section-space-y bg-white py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main Login Section -->
+  <div class="section-space-y d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- Login Card -->
+        <div class="col-lg-8 col-xl-7 shadow-lg rounded p-4 bg-white d-flex flex-column flex-md-row align-items-center justify-content-between">
+          <!-- Image -->
+          <div class="col-md-6 mb-4 mb-md-0 pe-md-4">
+            <img src="../../assets/stockifylogo.png" alt="Login Image" class="img-fluid rounded">
+          </div>
+  
+          <!-- Form -->
+          <div class="col-md-6">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <h4 class="mb-3">Login</h4>
+              <p class="text-muted mb-4">Please sign in using your credentials</p>
+  
+              <div class="mb-3">
+                <input type="text"
+                  class="form-control border-secondary bg-light"
+                  placeholder="Email"
+                  formControlName="email"
+                  list="savedUsers">
+                <datalist id="savedUsers">
+                  <option *ngFor="let user of savedUsers" [value]="user"></option>
+                </datalist>
+                <div *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched"
+                  class="text-danger small mt-1">
+                  Email is <strong>required</strong>
+                </div>
+              </div>
+  
+              <div class="mb-4">
+                <input type="password"
+                  class="form-control border-secondary bg-light"
+                  placeholder="Password"
+                  formControlName="password">
+                <div *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched"
+                  class="text-danger small mt-1">
+                  Password is <strong>required</strong>
+                </div>
+              </div>
+  
+              <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
+  
+              <p class="text-center pt-3 mb-0">
+                <span class="text-primary" style="cursor: pointer;" > <br></span>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  

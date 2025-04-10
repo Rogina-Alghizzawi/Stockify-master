@@ -1,0 +1,206 @@
+
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+            <style>
+                .min-vh-80 {
+                    min-height: calc(100vh - 200px);
+                }
+            </style>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">User Management</h1>
+
+
+       
+       <div class="container-fluid">
+                    <div class="container d-flex justify-content-start mt-4" style="margin-left:270px ;">
+                        <div class="card w-100">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">User Management</h5>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn"
+                                        [ngClass]="{'btn-primary active': activeTab === 'pending', 'btn-outline-secondary': activeTab !== 'pending'}"
+                                        (click)="switchTab('pending')">
+                                        <input type="radio" [checked]="activeTab === 'pending'"> Pending Users
+                                    </label>
+                                    <label class="btn"
+                                        [ngClass]="{'btn-primary active': activeTab === 'all', 'btn-outline-secondary': activeTab !== 'all'}"
+                                        (click)="switchTab('all')">
+                                        <input type="radio" [checked]="activeTab === 'all'"> All Users
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div class="card-body">
+                                <div *ngIf="loading" class="text-center text-muted">Loading users...</div>
+                                <div *ngIf="error" class="text-danger text-center">{{ error }}</div>
+
+                                <!-- Pending Users Table -->
+                                <table *ngIf="activeTab === 'pending' && !loading && pendingUsers.length > 0"
+                                    class="table table-bordered table-hover">
+                                    <thead class="thead-dark text-center">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Created At</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr *ngFor="let user of pendingUsers">
+                                            <td>{{ user.id }}</td>
+                                            <td>{{ user.firstName }}</td>
+                                            <td>{{ user.lastName }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td>{{ user.phone || '-' }}</td>
+                                            <td>{{ user.createdAt | date: 'medium' }}</td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <button class="btn btn-success btn-sm"
+                                                        (click)="approve(user.id)">Approve</button>
+                                                    <button class="btn btn-danger btn-sm ms-2"
+                                                        (click)="reject(user.id)">Reject</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table *ngIf="activeTab === 'all' && !loading && allUsers.length > 0"
+                                    class="table table-bordered table-hover mt-3 text-center align-middle">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Active</th>
+                                            <th>Role ID</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of allUsers">
+                                            <td>{{ user.id }}</td>
+                                            <td>{{ user.firstName }}</td>
+                                            <td>{{ user.lastName }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td>{{ user.phone || '-' }}</td>
+                                            <td>
+                                                <span [class.text-success]="user.active === 'Y'"
+                                                    [class.text-danger]="user.active === 'N'">
+                                                    {{ user.active }}
+                                                </span>
+                                            </td>
+                                            <td>{{ user.roleId }}</td>
+                                            <td>
+                                                <div class="d-flex justify-content-center gap-2">
+                                                    <button class="btn   btn-danger btn-sm  ms-2"
+                                                        (click)="deleteUser(user.id)">Delete</button>
+
+                                            <td class="text-center">
+                                                <button class="btn"
+                                                    [ngClass]="user.active === 'Y' ? 'btn-warning' : 'btn-success'"
+                                                    (click)="toggleUserStatus(user)" [disabled]="user.statusLoading">
+                                                    <span *ngIf="user.statusLoading"
+                                                        class="spinner-border spinner-border-sm" role="status"
+                                                        aria-hidden="true"></span>
+                                                    <span *ngIf="!user.statusLoading">{{ user.active === 'Y' ?
+                                                        'Deactivate' : 'Activate' }}</span>
+                                                </button>
+                                            </td>
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+
+
+                            <style>
+                                .table th,
+                                .table td {
+                                    vertical-align: middle;
+                                }
+
+                                .btn {
+                                    min-width: 90px;
+                                }
+
+                                .gap-2 {
+                                    gap: 0.5rem;
+                                }
+
+                                .align-middle {
+                                    vertical-align: middle !important;
+                                }
+
+                                .text-success {
+                                    font-weight: 600;
+                                }
+
+                                .text-danger {
+                                    font-weight: 600;
+                                }
+
+                                .spinner-border-sm {
+                                    width: 1rem;
+                                    height: 1rem;
+                                }
+                            </style>
+
+                            <!-- No Users Message -->
+                            <div *ngIf="!loading && activeTab === 'pending' && pendingUsers.length === 0"
+                                class="text-center text-muted">
+                                No pending users.
+                            </div>
+                            <div *ngIf="!loading && activeTab === 'all' && allUsers.length === 0"
+                                class="text-center text-muted">
+                                No users found.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .card {
+                    border-radius: 0.8rem;
+                    border: none;
+                    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+                }
+
+                .btn-group {
+                    display: flex;
+                    gap: 8px;
+                    justify-content: center;
+                }
+
+                .text-muted {
+                    font-style: italic;
+                }
+
+                .btn-danger {
+                    padding: 4px 10px;
+                    font-size: 0.85rem;
+                }
+            </style>
+
+           

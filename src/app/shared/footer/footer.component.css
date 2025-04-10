@@ -1,0 +1,39 @@
+/* Sticky Footer */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, #ff5f6d, #ffc371);
+}
+
+.footer {
+  margin-top: auto;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+/* Separator Line */
+.footer-line {
+  border-top: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+/* Icons */
+.text-primary {
+  color: #3c6ef3 !important;
+}
+
+.contact {
+  margin-top: 50px;
+}
+
+/* Align Copyright with Other Sections */
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Ensures alignment with taller sections */
+}

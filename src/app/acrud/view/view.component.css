@@ -1,0 +1,107 @@
+.cover-photo {
+    position: relative;
+    background: url(https://i.imgur.com/jxyuizJ.jpeg);
+    background-size: cover;
+    height: 180px;
+    border-radius: 5px 5px 0 0;
+}
+
+.profile {
+    position: absolute;
+    width: 120px;
+    bottom: -60px;
+    left: 15px;
+    border-radius: 50%;
+    border: 2px solid #222;
+    background: #222;
+    padding: 5px;
+}
+
+.profile-name {
+    font-size: 20px;
+    margin: 25px 0 0 120px;
+    color: #ffffff; /* Updated to white */
+}
+
+.about {
+    margin-top: 30px;
+    line-height: 1.6;
+    color: #ffffff; /* Updated to white */
+}
+
+.btn {
+    margin: 30px 15px;
+    background: #3C6EF3; /* Original color */
+    padding: 10px 25px;
+    border-radius: 3px;
+    border: 1px solid #3C6EF3; /* Original color */
+    font-weight: bold;
+    cursor: pointer;
+    color: #222; /* Original color */
+    transition: 0.2s;
+}
+
+.btn:last-of-type {
+    background: transparent;
+    border-color: #3C6EF3; /* Original color */
+    color: #3C6EF3; /* Original color */
+}
+
+.btn:hover {
+    background: #3C6EF3; /* Original color */
+    color: #222; /* Original color */
+}
+
+.icons {
+    width: 180px;
+    margin: 0 auto 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.icons i {
+    cursor: pointer;
+    padding: 5px;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.icons i:hover {
+    color: #3C6EF3; /* Original color */
+}
+
+/* Add this to your existing CSS file (crateadmin.component.css) */
+
+.container-fluid {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Ensure it takes full height */
+}
+
+.card {
+    margin: 20px; /* Add margin to prevent touching edges */
+    padding: 15px;
+    width: 700px; /* Updated width */
+    background: #222; /* Original color */
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.7);
+    user-select: none;
+}
+
+.navbar-search .form-control {
+    margin-top: 30px;
+    height: 40px; /* Adjust height as needed */
+    padding: 0.375rem 0.75rem; /* Adjust padding for better appearance */
+    border-radius: 0.2rem; /* Adjust border radius for styling */
+    border: 1px solid #3c6ef3; /* New border color */
+    background-color: #ffffff; /* New background color */
+    color: #222; /* Text color */
+}
+
+.navbar-search .form-control:focus {
+    border-color: #7da1ff; /* New focus border color */
+    box-shadow: 0 0 0 0.2rem rgba(125, 161, 255, 0.25); /* New focus shadow */
+}

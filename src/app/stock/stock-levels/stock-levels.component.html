@@ -1,0 +1,115 @@
+<app-navbar ></app-navbar>
+<app-sidebar ></app-sidebar>
+    
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">  
+            <div class="container-fluid">
+                <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Stock Levels</h1>
+                </div>
+               <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-end mb-3">
+                        <button class="btn btn-primary" (click)="exportToPDF()">Export as PDF</button>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <button mat-raised-button color="primary" (click)="openCreateDialog()" class="create-btn">
+                          <mat-icon>add_circle</mat-icon> Create
+                        </button>
+                      </div>
+                      
+                    <!-- Centered Form Container -->
+                    <div class="container d-flex justify-content-start mt-4">
+                        <div class="card w-100">
+                            <div class="card-header">
+                                <h5 class="card-title">Products</h5>
+                                <div class="d-flex justify-content-start align-items-center gap-2 mb-3">
+                                    <input type="text" 
+                                           class="form-control w-25 rounded-pill px-3" 
+                                           placeholder="Search by Name..." 
+                                           [(ngModel)]="searchText">
+                                    <button class="btn btn-primary rounded-pill px-4" (click)="performSearch()">Search</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                
+                                <!-- Add this div for scrolling -->
+                                <div style="overflow-x: auto; white-space: nowrap;">
+                                    
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Category Name</th>
+                                                <th>Price</th>
+                                                <th>Barcode</th>
+                                                <th>Quantity</th>
+                                                <th>Status</th>
+                                                <th>Supplier</th>
+                                                <th>Inventory</th>
+                                                <th>Unit Measurement</th>
+                                                <th>Description</th>
+                                                <th>Created At</th>
+                                                <th>Image</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let stock of filteredStockItems">
+                                                <td>{{ stock.id }}</td>
+                                                <td>{{ stock.name }}</td>
+                                                <td>{{ stock.categoryName }}</td>
+                                                <td>{{ stock.price }}</td>
+                                                <td>{{ stock.barcode }}</td>
+                                                <td>{{ stock.quantity }}</td>
+                                                <td>{{ stock.status }}</td>
+                                                <td>{{ stock.supplierName }}</td>
+                                                <td>{{ stock.inventoryName }}</td> 
+                                                <td>{{ stock.unitMeasurement }}</td>
+                                                <td>{{ stock.description }}</td>
+                                                <td>{{ stock.createdAt | date: 'yyyy-MM-dd HH:mm' }}</td>
+                                                <!-- <td>{{ stock.imagePath }}</td>
+                                                 
+                                                -->
+
+
+                                                <td>
+                                                    <div *ngIf="stock.imagePath" class="cover-photo">
+                                                      <img [src]="stock.imagePath" class="profile" alt="Product Image" />
+                                                    </div>
+                                                    <div *ngIf="!stock.imagePath" class="text-muted">
+                                                      No Image Available
+                                                    </div>
+                                                  </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <app-footer ></app-footer>
+<style>
+.min-vh-80 {
+    min-height: calc(100vh - 200px);
+}
+.card {
+    border-radius: 0.8rem;
+    border: none;
+}
+</style>
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+           
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->

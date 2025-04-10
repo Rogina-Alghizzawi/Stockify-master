@@ -1,0 +1,106 @@
+<app-navbar ></app-navbar>
+  <app-sidebar ></app-sidebar>
+<div class="container mt-4">
+  <h2 class="text-center mb-4 text-teal" style="color: #5C6AC4;" >📊 Inventory Analytics Dashboard</h2>
+  
+   
+  <!-- Section: Inventory Report Table -->
+  <div class="card shadow-sm mb-5" style="margin-left: 100px;">
+    <div class="card-header" style="background-color: #5c6ac4; color: white;">
+      <h5 class="mb-0">📋 Inventory Report Summary</h5>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-bordered table-hover text-center align-middle mb-0">
+        <thead style="background-color: #334155; color: white;">
+          <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Stock</th>
+            <th>Total Sold</th>
+            <th>Turnover Rate</th>
+            <th>Demand Pattern</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of reportData">
+            <td>{{ item.productId }}</td>
+            <td>{{ item.productName }}</td>
+            <td>{{ item.currentStock }}</td>
+            <td>{{ item.totalSold }}</td>
+            <td>{{ item.turnoverRate }}</td>
+            <td>
+              <span [ngClass]="{
+                'text-success fw-bold': item.demandPattern === 'High',
+                'text-warning fw-bold': item.demandPattern === 'Moderate',
+                'text-danger fw-bold': item.demandPattern === 'Low'
+              }">
+                {{ item.demandPattern }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- User Stat Cards -->
+  <div class="row mt-4 text-center" style="margin-left: 150px;">
+    <div class="col-md-6">
+      <div class="card shadow-sm" style="background-color: #334155; color: white;">
+        <div class="card-body fs-4">
+          🧍 Users who left: <strong>{{ leftUserCount }}</strong>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow-sm" style="background-color: #5C6AC4; color: white;">
+        <div class="card-body fs-4">
+          🧍 Total Users: <strong>{{ totalUserCount }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!-- Chart Section -->
+<div class="row mt-4" style="margin-left: 150px;">
+  <!-- Bar Chart -->
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100 mb-4">
+      <div class="card-header" style="background-color: #5C6AC4; color: white;">
+        <h6 class="mb-0">📦 Stock Quantity by Category</h6>
+      </div>
+      <div class="card-body">
+        <canvas baseChart
+[data]="stockCategoryChartData"
+[options]="stockCategoryChartOptions"
+[type]="'bar'">
+</canvas>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bar Chart -->
+
+
+<!-- Pie Chart -->
+
+
+  <!-- Pie Chart -->
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100 mb-4">
+      <div class="card-header" style="background-color: #334155; color: white;">
+        <h6 class="mb-0">🎯 Demand Pattern Distribution</h6>
+      </div>
+      <div class="card-body">
+        <canvas baseChart
+        [data]="demandChartData"
+        [options]="demandChartOptions"
+        [type]="'pie'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+</div>	
+<app-footer ></app-footer>

@@ -1,0 +1,97 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-xl-6 col-lg-8 col-md-10">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+      <div class="card-body">
+        <h2 class="text-center fw-bold mb-4 text-primary">Add Inventory Item</h2>
+
+        <form class="row g-4" (ngSubmit)="onSubmit()" #inventoryForm="ngForm">
+
+          <!-- Name -->
+          <div class="col-12">
+            <label class="form-label fw-bold">Name</label>
+            <input type="text"
+                   class="form-control border-primary-subtle"
+                   required
+                   name="name"
+                   [(ngModel)]="inventory.name"
+                   placeholder="Enter item name"
+                   #name="ngModel" />
+            <div class="text-danger small" *ngIf="name.invalid && name.touched">
+              * Item name is required.
+            </div>
+          </div>
+
+          <!-- Supplier Dropdown -->
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Supplier</label>
+            <select class="form-control border-primary-subtle"
+                    required
+                    name="supplierId"
+                    [(ngModel)]="inventory.supplierId"
+                    #supplierId="ngModel">
+              <option value="" disabled selected>Select a supplier</option>
+              <option *ngFor="let supplier of suppliers" [value]="supplier.id">
+                {{ supplier.name }}
+              </option>
+            </select>
+            <div class="text-danger small" *ngIf="supplierId.invalid && supplierId.touched">
+              * Please select a supplier.
+            </div>
+          </div>
+
+          <!-- Address Dropdown -->
+          <div class="col-12">
+            <label class="form-label fw-bold">Address</label>
+            <select class="form-control border-primary-subtle"
+                    required
+                    name="locationId"
+                    [(ngModel)]="inventory.locationId"
+                    #locationId="ngModel">
+              <option value="" disabled selected>Select a location</option>
+              <option *ngFor="let loc of locations" [value]="loc.id">
+                {{ loc.address }}
+              </option>
+            </select>
+            <div class="text-danger small" *ngIf="locationId.invalid && locationId.touched">
+              * Please select a location.
+            </div>
+          </div>
+
+          <!-- Inventory Type Dropdown -->
+          <div class="col-12">
+            <label class="form-label fw-bold">Inventory Type</label>
+            <select class="form-control border-primary-subtle"
+                    required
+                    name="type"
+                    [(ngModel)]="inventory.type"
+                    #type="ngModel">
+              <option value="" disabled selected>Select inventory type</option>
+              <option *ngFor="let type of inventoryTypes" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+            <div class="text-danger small" *ngIf="type.invalid && type.touched">
+              * Please select inventory type.
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="col-12 mt-4 d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary w-45 py-2">Back</button>
+            <button type="submit"
+                    class="btn btn-primary w-45 py-2"
+                    [disabled]="!inventoryForm.valid">
+              Add Inventory
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,148 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-xl-6 col-lg-8 col-md-10">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+      <div class="card-body">
+        <h2 class="text-center mb-4 text-primary fw-bold">Create Manager</h2>
+
+        <form class="row g-3" (ngSubmit)="createManager()" #CreateForm="ngForm">
+
+          <!-- First Name -->
+          <div class="col-md-6">
+            <label class="form-label fw-bold">First Name</label>
+            <input class="form-control border-primary-subtle"
+                   name="firstName"
+                   [(ngModel)]="manager.firstName"
+                   required
+                   pattern="^[A-Za-z]{2,}$"
+                   placeholder="Enter first name"
+                   #firstName="ngModel" />
+            <div class="text-danger small" *ngIf="firstName.invalid && firstName.touched">
+              * First name must be at least 2 letters.
+            </div>
+          </div>
+
+          <!-- Last Name -->
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Last Name</label>
+            <input class="form-control border-primary-subtle"
+                   name="lastName"
+                   [(ngModel)]="manager.lastName"
+                   required
+                   pattern="^[A-Za-z]{2,}$"
+                   placeholder="Enter last name"
+                   #lastName="ngModel" />
+            <div class="text-danger small" *ngIf="lastName.invalid && lastName.touched">
+              * Last name must be at least 2 letters.
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Email</label>
+            <input type="email"
+                   class="form-control border-primary-subtle"
+                   name="email"
+                   [(ngModel)]="manager.email"
+                   required
+                   placeholder="Enter email address"
+                   #email="ngModel" />
+            <div class="text-danger small" *ngIf="email.invalid && email.touched">
+              * Please enter a valid email.
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Phone Number</label>
+            <input class="form-control border-primary-subtle"
+                   name="phoneNumber"
+                   [(ngModel)]="manager.phone"
+                   required
+                   pattern="^[0-9]{8,14}$"
+                   placeholder="e.g. 0791234567"
+                   #phoneNumber="ngModel" />
+            <div class="text-danger small" *ngIf="phoneNumber.invalid && phoneNumber.touched">
+              * Enter a valid phone number (8–14 digits).
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Password</label>
+            <div class="input-group">
+              <input [type]="showPassword ? 'text' : 'password'"
+                     class="form-control border-primary-subtle"
+                     name="password"
+                     [(ngModel)]="manager.password"
+                     required
+                     pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+                     placeholder="At least 6 characters with letters and numbers"
+                     #password="ngModel" />
+              <button type="button" class="btn btn-outline-primary" (click)="togglePasswordVisibility()">
+                <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+              </button>
+            </div>
+            <div class="text-danger small" *ngIf="password.invalid && password.touched">
+              * Password must be at least 6 characters and include numbers.
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="col-12">
+            <label class="form-label fw-bold">Address</label>
+            <select class="form-control border-primary-subtle"
+                    required
+                    [(ngModel)]="manager.locationId"
+                    name="locationId"
+                    #locationId="ngModel">
+              <option value="" disabled selected>Select location</option>
+              <option *ngFor="let loc of locations" [value]="loc.id">
+                {{ loc.address }}
+              </option>
+            </select>
+            <div class="text-danger small" *ngIf="locationId.invalid && locationId.touched">
+              * Please select a location.
+            </div>
+          </div>
+
+          <!-- Inventory -->
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Inventory</label>
+            <select class="form-control border-primary-subtle"
+                    [(ngModel)]="manager.inventoryId"
+                    name="inventoryId">
+              <option value="" disabled selected>Select inventory</option>
+              <option *ngFor="let inv of inventories" [value]="inv.id">
+                {{ inv.name }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Upload Image -->
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Upload Image</label>
+            <input type="file"
+                   class="form-control border-primary-subtle"
+                   (change)="uploadimage($event)"
+                   accept="image/*" />
+          </div>
+
+          <!-- Actions -->
+          <div class="col-12 mt-4 d-flex justify-content-between gap-2">
+            <button type="button" class="btn btn-secondary w-50 py-2">Back</button>
+            <button type="submit"
+                    class="btn btn-primary w-50 py-2"
+                    [disabled]="!CreateForm.valid">
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

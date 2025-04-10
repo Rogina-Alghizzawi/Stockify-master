@@ -1,0 +1,78 @@
+
+<nav class="sidebar">
+    
+  <div class="sidebar-user d-flex align-items-center px-3 mb-3">
+      <img
+        *ngIf="user?.imagePath"
+        [src]="user?.imagePath"
+        class="sidebar-user-img me-2"
+        alt="User Image"
+      />
+     
+ 
+      <span class="sidebar-user-name">{{ user?.firstName }} {{ user?.lastName }}</span>
+    </div>
+    
+    
+  <ul class="sidebar-menu">
+      
+    <li>
+      <a routerLink="/Dashboard/InventoryAnalytics">
+        <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+      </a>
+    </li>
+    <hr />
+    <li>
+      <a routerLink="/reorder/reorderPage">
+        <i class="fas fa-boxes"></i> <span>Reorder</span>
+      </a>
+    </li>
+    <hr />
+    <li>
+      <a routerLink="/manager/createManager">
+        <i class="fas fa-users"></i> <span>Manager</span>
+      </a>
+    </li>
+    <hr />
+    <li>
+      <a routerLink="/admin/staffaproval">
+        <i class="fas fa-chart-line"></i> <span>Staff Approval</span>
+      </a>
+    </li>
+    <hr />
+    <li>
+      <a routerLink="/stock/stocklevel">
+        <i class="fas fa-cog"></i> <span>Stock Level</span>
+      </a>
+    </li>
+    <hr />
+    <li>
+      <a routerLink="/acrud/createAdmin">
+        <i class="fas fa-user-shield"></i> <span>Create Admin</span>
+      </a>
+    </li>
+    <hr />
+    <li>
+      <a routerLink="/acrud/View">
+        <i class="fas fa-id-badge"></i> <span>My Profile</span>
+      </a>
+    </li>
+    <hr />
+    <li>
+      <a routerLink="/inventory/createInventory">
+        <i class="fas fa-plus"></i> <span>Add Inventory</span>
+      </a>
+    </li>
+    <hr />
+    <li>
+      <a routerLink="/inventory/Map">
+        <i class="fas fa-map-marker-alt"></i> <span>Our Inventory</span>
+      </a>
+    </li>
+    
+  </ul>
+
+  <div class="sidebar-footer">
+    <img src="../../../assets/Images/logo.png" alt="Stockify Logo" />
+  </div>
+</nav>

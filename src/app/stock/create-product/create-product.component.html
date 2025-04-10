@@ -1,0 +1,117 @@
+<h2 mat-dialog-title>Create New Product</h2>
+
+<mat-dialog-content class="mat-typography">
+  <!-- Form for adding a product -->
+  <form [formGroup]="addProductForm" class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Product Name</mat-label>
+      <input type="text" matInput formControlName="name">
+      <mat-error *ngIf="addProductForm.controls['name']?.hasError('required')">
+        Product Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Category Name</mat-label>
+      <mat-select formControlName="categoryId" placeholder="Select a category" *ngIf="categories.length">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="addProductForm.controls['categoryId']?.hasError('required')">
+        Category is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Price</mat-label>
+      <input type="number" matInput formControlName="price">
+      <mat-error *ngIf="addProductForm.controls['price']?.hasError('required')">
+        Price is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Barcode</mat-label>
+      <input type="text" matInput formControlName="barcode">
+      <mat-error *ngIf="addProductForm.controls['barcode']?.hasError('required')">
+        Barcode is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Quantity</mat-label>
+      <input type="number" matInput formControlName="quantity">
+      <mat-error *ngIf="addProductForm.controls['quantity']?.hasError('required')">
+        Quantity is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" *ngIf="statusList.length">
+        <mat-option *ngFor="let status of statusList" [value]="status.id">
+          {{ status.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="addProductForm.controls['status']?.hasError('required')">
+        Status is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Supplier Name</mat-label>
+      <mat-select formControlName="supplierName" *ngIf="suppliers.length">
+        <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">
+          {{ supplier.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="addProductForm.controls['supplierName']?.hasError('required')">
+        Supplier Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Inventory Name</mat-label>
+      <mat-select formControlName="inventoryName" *ngIf="inventoryList.length">
+        <mat-option *ngFor="let inventory of inventoryList" [value]="inventory.id">
+          {{ inventory.name }}
+        </mat-option>
+      </mat-select>      
+      <mat-error *ngIf="addProductForm.controls['inventoryName']?.hasError('required')">
+        Inventory Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Unit Measurement</mat-label>
+      <input type="text" matInput formControlName="unitMeasurement">
+      <mat-error *ngIf="addProductForm.controls['unitMeasurement']?.hasError('required')">
+        Unit Measurement is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="addProductForm.controls['description']?.hasError('required')">
+        Description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Image -->
+    <div class="example-full-width">
+      <mat-label>Image</mat-label>
+      <input type="file" class="form-control" (change)="uploadImage($event)" accept="image/*">
+      <mat-error *ngIf="addProductForm.controls['image']?.hasError('required')">
+        Image is <strong>required</strong>
+      </mat-error>
+    </div>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="Create()" [mat-dialog-close]="true" cdkFocusInitial>Create</button>
+</mat-dialog-actions>

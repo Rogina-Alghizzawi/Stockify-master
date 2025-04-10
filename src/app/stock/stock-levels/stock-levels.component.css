@@ -1,0 +1,19 @@
+/* لتعديل موقع المحتوى ليتجنب sidebar */
+#content-wrapper {
+    margin-left: 230px; /* نفس عرض الـ sidebar */
+    padding-top: 70px; /* لتوفير مساحة للـ navbar */
+    transition: margin-left 0.3s ease;
+  }
+  
+  /* تعديل على عرض البطاقة */
+  .card.w-100 {
+    max-width: 100%;
+  }
+  
+  /* ضبط الصورة داخل الجدول (إن وُجدت لاحقاً) */
+  table td img {
+    max-width: 60px;
+    height: auto;
+    border-radius: 6px;
+  }
+  
